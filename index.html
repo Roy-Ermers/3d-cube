@@ -130,6 +130,15 @@
             font-size: 12px;
             font-style: italic;
         }
+        
+         ::selection {
+            background-color: transparent;
+        }
+        
+        a {
+            color: lightskyblue;
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -141,7 +150,7 @@
         <label for="RotX">X:</label><input type="range" oninput="changeRotation(this.value, 'x');" min="0" max="360" step="1" id="RotX"></input>
         <label for="RotY">Y:</label><input type="range" oninput="changeRotation(this.value, 'y');" min="0" max="360" step="1" id="RotY"></input>
         <label for="AutoRot">Autorotate:</label><input type="checkbox" onchange="autorotate=this.checked;" id="AutoRot" checked="checked"></input>
-        <p>Made By Roy Ermers</p>
+        <p>Made By Roy Ermers <a href="https://github.com/Roy-Ermers">(github)</a></p>
     </div>
 </body>
 
