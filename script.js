@@ -2,6 +2,7 @@ var canvas;
 var ctx;
 var cube = new Cube(0, 0, 0, 2, 2);
 var autorotate = true;
+var MousePosition;
 
 function changeRotation(value, axis) {
     if (axis == 'x') {
@@ -17,6 +18,11 @@ function changeRotation(value, axis) {
 
 function Onload() {
     canvas = document.getElementsByTagName("canvas")[0];
+    canvas.addEventListener("mousedown", OnMouseDown);
+    canvas.addEventListener("mouseup", function() {
+        MousePosition = undefined;
+    });
+    canvas.addEventListener("mousemove", MouseMove);
     ctx = canvas.getContext("2d");
     ctx.imageSmoothingEnabled = true;
     document.Resize += Resize;
@@ -24,6 +30,18 @@ function Onload() {
     Redraw();
 }
 
+function OnMouseDown(event) {
+    MousePosition = { x: event.clientX, y: event.clientY };
+}
+
+function MouseMove(event) {
+    if (MousePosition == undefined) return;
+    autorotate = false;
+    document.getElementById("AutoRot").checked = false;
+
+    cube.angle.x = (MousePosition.y - event.clientY) * -0.25;
+    cube.angle.y = (MousePosition.x - event.clientX) * 0.25;
+}
 
 function Resize() {
     canvas.width = window.innerWidth;
