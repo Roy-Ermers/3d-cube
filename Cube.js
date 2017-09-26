@@ -3,17 +3,25 @@ function Cube(x, y, z, size) {
     this.y = y;
     this.z = z;
     this.vertices = [
-        new Vector3(-1, 1, -1),
-        new Vector3(1, 1, -1),
-        new Vector3(1, -1, -1),
-        new Vector3(-1, -1, -1),
-        new Vector3(-1, 1, 1),
-        new Vector3(1, 1, 1),
-        new Vector3(1, -1, 1),
-        new Vector3(-1, -1, 1)
+        new Vector3(-size / 2 + x, size / 2 + y, -size / 2 + z),
+        new Vector3(size / 2 + x, size / 2 + y, -size / 2 + z),
+        new Vector3(size / 2 + x, -size / 2 + y, -size / 2 + z),
+        new Vector3(-size / 2 + x, -size / 2 + y, -size / 2 + z),
+        new Vector3(-size / 2 + x, size / 2 + y, size / 2 + z),
+        new Vector3(size / 2 + x, size / 2 + y, size / 2 + z),
+        new Vector3(size / 2 + x, -size / 2 + y, size / 2 + z),
+        new Vector3(-size / 2 + x, -size / 2 + y, size / 2 + z)
     ];
-    this.angle = new Vector3(0, 0, 0);
-    this.color = Color.Red;
+    this.faces = [
+        [0, 1, 2, 3],
+        [1, 5, 6, 2],
+        [5, 4, 7, 6],
+        [4, 0, 3, 7],
+        [0, 4, 5, 1],
+        [3, 2, 6, 7]
+    ];
+    this.angle = new Vector3(45, 0, 0);
+    this.color = new Color(208, 165, 93);
 }
 
 function Color(r, g, b) {
@@ -21,13 +29,14 @@ function Color(r, g, b) {
     this.g = g;
     this.b = b;
     this.toString = function() {
-        return "rgb(" + r + "," + g + "," + b + ");";
+        return "rgb(" + r + "," + g + "," + b + ")";
     }
 }
 Color.Red = new Color(255, 0, 0);
 Color.Green = new Color(0, 255, 0);
 Color.Blue = new Color(0, 0, 255);
-
+Color.Black = new Color(0, 0, 0);
+Color.White = new Color(255, 255, 255);
 
 function Vector3(x, y, z = 0) {
     this.x = x;
